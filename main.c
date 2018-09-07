@@ -41,26 +41,31 @@ int matches_leading(char *partial_line, char *pattern, char *ori) {
                             pattern++;
                             pattern++;
                             partial_line++;
+                            return matches_leading(partial_line,pattern,ori);
                         }
                         else{   //meiwenti
                             pattern++;
                             pattern++;
+                            return matches_leading(partial_line,pattern,ori);
                         }
                     }
                     else{    // *(partial_line) != *(pattern+2) //youwenti
                         pattern++;
                         pattern++;
                         partial_line++;
+                        return matches_leading(partial_line,pattern,ori);
                     }
                 }
                 else{   //?qianmianmeiyou.
                     if(*pattern != *partial_line){
                         pattern++;
                         pattern++;
+                        return matches_leading(partial_line,pattern,ori);
                     }
                     else{
                         pattern++;
                         partial_line++;
+                        return matches_leading(partial_line,pattern,ori);
                     }
                     }
                     //Check if code reaches the end of hthe sentence, where character is '0'
@@ -110,11 +115,13 @@ int matches_leading(char *partial_line, char *pattern, char *ori) {
                          while(*pattern == temp){
                              pattern++;
                          }
+                          return matches_leading(partial_line,pattern,ori);
                      }
                      else{
                          pattern++;
                          pattern++;
                          partial_line++;
+                         return matches_leading(partial_line,pattern,ori);
                      }
                  }
                 else{  // actually they are the same
@@ -128,19 +135,18 @@ int matches_leading(char *partial_line, char *pattern, char *ori) {
                         while(*pattern == tempp){
                             pattern++;
                         }
+                        return matches_leading(partial_line,pattern,ori);
                     }
                     else{
                         pattern++;
                         pattern++;
                         partial_line++;
+                        return matches_leading(partial_line,pattern,ori);
                     }
                 }
             }
                      
-                     
-                     
-               
-            
+      
             // CHARACTER MATCH
             if (*pattern == *partial_line) {
                 return matches_leading(partial_line+1,pattern+1,ori); //increment both pattern and partial line if they have the same character, ie they match
@@ -200,7 +206,7 @@ int main() {
     gets(a);
     printf("THEN enter the pattern you search for:\n");
     gets(b);
-    switch (matches_leading(a, b,b)) {
+    switch (rgrep_matches(a, b)) {
         case 0:
             printf("No such a pattern\n");
             break;
