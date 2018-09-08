@@ -63,10 +63,17 @@ int matches_leading(char *partial_line, char *pattern, char *ori) {
                         return matches_leading(partial_line,pattern,ori);
                     }
                     else{
-                        pattern++;
-                        pattern++;
-                        partial_line++;
-                        return matches_leading(partial_line,pattern,ori);
+                       
+                        if(*partial_line == *(pattern+2)){
+                            pattern++;
+                            pattern++;
+                        }
+                        else{
+                            pattern++;
+                            pattern++;
+                            partial_line++;
+                        }
+                    return matches_leading(partial_line,pattern,ori);
                     }
                     }
                     //Check if code reaches the end of hthe sentence, where character is '0'
