@@ -64,6 +64,7 @@ int matches_leading(char *partial_line, char *pattern, char *ori) {
                     }
                     else{
                         pattern++;
+                        pattern++;
                         partial_line++;
                         return matches_leading(partial_line,pattern,ori);
                     }
